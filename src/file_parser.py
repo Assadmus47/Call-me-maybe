@@ -1,5 +1,5 @@
 import json
-from models import Function, FunctionCallingTest, OutputFile
+from src.models import Function, FunctionCallingTest, OutputFile
 
 
 def parse_function_file(filename: str) -> list[Function]:
