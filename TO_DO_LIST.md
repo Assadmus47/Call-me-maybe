@@ -3,9 +3,9 @@
 ## Jour 1 — Setup + CLI + Parsing 🟢
 *Objectif : le programme tourne, lit les fichiers, comprend les arguments*
 
-- [ ] **Étape 0** — Setup : structure des dossiers + git + `uv init`
-- [ ] **Étape 1** — CLI : lire les 3 arguments (`--functions_definition`, `--input`, `--output`)
-- [ ] **Étape 2** — Parser `functions_definition.json` → modèles Pydantic
+- [✅] **Étape 0** — Setup : structure des dossiers + git + `uv init`
+- [✅] **Étape 1** — CLI : lire les 3 arguments (`--functions_definition`, `--input`, `--output`)
+- [✅] **Étape 2** — Parser `functions_definition.json` → modèles Pydantic
 - [ ] **Étape 3** — Parser `function_calling_tests.json` → modèles Pydantic
 - [ ] **Étape 4** — Écrire le fichier de sortie (même avec des données bidons)
 
