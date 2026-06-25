@@ -1,5 +1,5 @@
 import json
-from models import Function, FunctionCallingTest
+from models import Function, FunctionCallingTest, OutputFile
 
 
 def parse_function_file(filename: str) -> list[Function]:
@@ -24,5 +24,16 @@ def parse_calling_function_file(filename: str) -> list[FunctionCallingTest]:
 
     except json.JSONDecodeError:
         raise SystemExit(f"ERROR: Invalid JSON in file: {filename}")
+    except FileNotFoundError:
+        raise SystemExit("ERROR: File Not Found.")
+
+
+def write_output_file(file_path: str, output_files: list[OutputFile]):
+    try:
+        data = [item.model_dump() for item in output_files]
+
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=2)
+
     except FileNotFoundError:
         raise SystemExit("ERROR: File Not Found.")
