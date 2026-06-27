@@ -16,9 +16,9 @@
 ## Jour 2 — Explorer le SDK 🟡
 *Objectif : comprendre comment le LLM fonctionne concrètement*
 
-- [✅ ] **Étape 5** — Tester `encode()`, `get_logits_from_input_ids()`, `decode()`
-- [ ] **Étape 6** — Charger le fichier vocab, comprendre le format token ↔ id
-- [ ] **Étape 6b** — Construire le mapping id → token string
+- [✅] **Étape 5** — Tester `encode()`, `get_logits_from_input_ids()`, `decode()`
+- [✅] **Étape 6** — Charger le fichier vocab, comprendre le format token ↔ id
+- [✅] **Étape 6b** — Construire le mapping id → token string
 
 > ✅ Fin de journée : tu sais ce qu'est un token, un logit, et comment naviguer dans le vocab.
 
@@ -52,7 +52,7 @@
 - [ ] **Étape 12** — `flake8` → 0 erreur
 - [ ] **Étape 12b** — `mypy` avec les flags du sujet → 0 erreur
 - [ ] **Étape 12c** — Type hints + docstrings PEP 257 partout
-- [ ] **Étape 13** — Makefile (`install`, `run`, `debug`, `clean`, `lint`)
+- [✅] **Étape 13** — Makefile (`install`, `run`, `debug`, `clean`, `lint`)
 - [ ] **Étape 14** — README complet (en anglais, sections obligatoires du sujet)
 - [ ] **Étape 15** — Vérification finale : `uv sync` + test à froid + pas d'`output/` dans le git
 
