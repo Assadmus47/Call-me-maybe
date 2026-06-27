@@ -16,7 +16,7 @@
 ## Jour 2 — Explorer le SDK 🟡
 *Objectif : comprendre comment le LLM fonctionne concrètement*
 
-- [ ] **Étape 5** — Tester `encode()`, `get_logits_from_input_ids()`, `decode()`
+- [✅ ] **Étape 5** — Tester `encode()`, `get_logits_from_input_ids()`, `decode()`
 - [ ] **Étape 6** — Charger le fichier vocab, comprendre le format token ↔ id
 - [ ] **Étape 6b** — Construire le mapping id → token string
 
