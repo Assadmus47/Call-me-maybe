@@ -67,7 +67,10 @@ def generate_number_value(model: Any, vocab: dict[str, float], ids_list: list[in
         ids_list.append(max_id)
         if last_token not in [",", "}"]:
             value += last_token
-    value = float(value)
+    try:
+        value = float(value)
+    except ValueError:
+        raise SystemExit("ERROR: Could not generate number value")
     return value, ids_list
 
 

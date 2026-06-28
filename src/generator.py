@@ -7,6 +7,7 @@ from src.prompt_builder import prompt_builder
 
 def get_function_name(model, vocab, functions_names, ids_list) -> str:
     generated_so_far: str = ""
+    counter = 0
     while (generated_so_far not in functions_names):
         logits = model.get_logits_from_input_ids(ids_list)
 
@@ -15,6 +16,9 @@ def get_function_name(model, vocab, functions_names, ids_list) -> str:
         max_id = logits.index(max(logits))
         generated_so_far += model.decode([max_id])
         ids_list.append(max_id)
+        counter += 1
+        if counter == 50:
+            raise SystemExit("ERROR: Could not generate function name")
     
     return generated_so_far
 
@@ -52,7 +56,8 @@ def generate_function_call(model: Small_LLM_Model, vocab: dict[str, float], func
             value, ids_list = generate_string_value(model, vocab, ids_list)
         elif param_info.type == "bool":
             value, ids_list = generate_boolean_value(model, vocab, ids_list)
-        
+        else:
+            raise SystemExit(f"ERROR: Unknown parameter type: {param_info.type}")
         params[param_name] = value
 
     return OutputFile(prompt=test.prompt, name=generated_so_far, parameters=params)

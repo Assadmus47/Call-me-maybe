@@ -39,7 +39,7 @@
 *Objectif : le LLM choisit la bonne fonction, tout s'assemble*
 
 - [✅] **Étape 9** — Faire choisir la fonction au LLM (avec contrainte sur les noms valides)
-- [ ] **Étape 10** — Pipeline complet : prompt → fonction → arguments → fichier de sortie
+- [✅] **Étape 10** — Pipeline complet : prompt → fonction → arguments → fichier de sortie
 - [ ] **Étape 11** — Gestion d'erreurs : fichier manquant, JSON cassé, edge cases
 
 > ✅ Fin de journée : pipeline end-to-end qui tourne sur tous les prompts de test.
