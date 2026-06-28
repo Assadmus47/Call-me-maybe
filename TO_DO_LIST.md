@@ -28,7 +28,7 @@
 *Objectif : forcer le modèle à générer du JSON valide token par token*
 
 - [✅] **Étape 7** — Comprendre la boucle de génération (schéma à la main)
-- [ ] **Étape 7b** — Coder un cas ultra simple : générer `{"a": <nombre>}` avec contrainte
+- [✅] **Étape 7b** — Coder un cas ultra simple : générer `{"a": <nombre>}` avec contrainte
 - [ ] **Étape 8** — Généraliser : gérer string, number, boolean, plusieurs paramètres
 
 > ✅ Fin de journée : le decoder produit du JSON 100% valide pour n'importe quel schéma.
