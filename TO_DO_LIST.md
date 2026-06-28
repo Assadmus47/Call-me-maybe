@@ -40,7 +40,7 @@
 
 - [✅] **Étape 9** — Faire choisir la fonction au LLM (avec contrainte sur les noms valides)
 - [✅] **Étape 10** — Pipeline complet : prompt → fonction → arguments → fichier de sortie
-- [ ] **Étape 11** — Gestion d'erreurs : fichier manquant, JSON cassé, edge cases
+- [✅] **Étape 11** — Gestion d'erreurs : fichier manquant, JSON cassé, edge cases
 
 > ✅ Fin de journée : pipeline end-to-end qui tourne sur tous les prompts de test.
 
@@ -49,11 +49,11 @@
 ## Jour 5 — Finition + qualité 42 ⚙️
 *Objectif : code propre, conforme aux exigences du sujet*
 
-- [ ] **Étape 12** — `flake8` → 0 erreur
-- [ ] **Étape 12b** — `mypy` avec les flags du sujet → 0 erreur
-- [ ] **Étape 12c** — Type hints + docstrings PEP 257 partout
+- [✅] **Étape 12** — `flake8` → 0 erreur
+- [✅] **Étape 12b** — `mypy` avec les flags du sujet → 0 erreur
+- [✅] **Étape 12c** — Type hints + docstrings PEP 257 partout
 - [✅] **Étape 13** — Makefile (`install`, `run`, `debug`, `clean`, `lint`)
-- [ ] **Étape 14** — README complet (en anglais, sections obligatoires du sujet)
+- [✅] **Étape 14** — README complet (en anglais, sections obligatoires du sujet)
 - [ ] **Étape 15** — Vérification finale : `uv sync` + test à froid + pas d'`output/` dans le git
 
 > ✅ Fin de journée : projet prêt à soumettre 🎉
