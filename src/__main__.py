@@ -29,7 +29,7 @@ def get_files_info() -> tuple[
     )
     parser.add_argument(
         "--output",
-        default="data/output/function_calls.json",
+        default="data/output/function_calling_results.json",
     )
     args = parser.parse_args()
     functions = parse_function_file(args.functions_definition)
