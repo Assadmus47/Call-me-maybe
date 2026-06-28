@@ -29,7 +29,7 @@
 
 - [✅] **Étape 7** — Comprendre la boucle de génération (schéma à la main)
 - [✅] **Étape 7b** — Coder un cas ultra simple : générer `{"a": <nombre>}` avec contrainte
-- [ ] **Étape 8** — Généraliser : gérer string, number, boolean, plusieurs paramètres
+- [✅] **Étape 8** — Généraliser : gérer string, number, boolean, plusieurs paramètres
 
 > ✅ Fin de journée : le decoder produit du JSON 100% valide pour n'importe quel schéma.
 
@@ -38,7 +38,7 @@
 ## Jour 4 — Sélection de fonction + Pipeline complet 🔴
 *Objectif : le LLM choisit la bonne fonction, tout s'assemble*
 
-- [ ] **Étape 9** — Faire choisir la fonction au LLM (avec contrainte sur les noms valides)
+- [✅] **Étape 9** — Faire choisir la fonction au LLM (avec contrainte sur les noms valides)
 - [ ] **Étape 10** — Pipeline complet : prompt → fonction → arguments → fichier de sortie
 - [ ] **Étape 11** — Gestion d'erreurs : fichier manquant, JSON cassé, edge cases
 

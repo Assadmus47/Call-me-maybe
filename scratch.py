@@ -49,7 +49,6 @@ while (generated_so_far not in function_names):
     ids_list.append(max_id)
 
 function = find_function_name(functions, generated_so_far)
-function = find_function_name(functions, generated_so_far)
 if function is None:
     raise SystemExit("ERROR: Function not found")
 

@@ -1,6 +1,7 @@
 from src.models import Function
 from typing import Any
 
+
 def find_valide_token(logits: list[float], vocab: dict[str, float], function_names: list[str], generated_so_far: str) -> list[float]:
     id_to_token = {v: k for k, v in vocab.items()}
     for token_id, score in enumerate(logits):
@@ -13,6 +14,7 @@ def find_valide_token(logits: list[float], vocab: dict[str, float], function_nam
             logits[token_id] = float('-inf')
     return logits
 
+
 def find_valid_number_tokens(logits: list[float], vocab: dict[str, float]) -> list[float]:
     id_to_token = {v: k for k, v in vocab.items()}
     for token_id, score in enumerate(logits):
@@ -22,6 +24,18 @@ def find_valid_number_tokens(logits: list[float], vocab: dict[str, float]) -> li
         if id_to_token[token_id] in [".", "-", ",", "}"]:
             continue
         if not id_to_token[token_id].replace(".", "").replace("-", "").isdigit():
+            logits[token_id] = float('-inf')
+
+    return logits
+
+
+def find_valid_boolean_tokens(logits: list[float], vocab: dict[str, float]) -> list[float]:
+    id_to_token = {v: k for k, v in vocab.items()}
+    for token_id, score in enumerate(logits):
+        if token_id not in id_to_token:
+            logits[token_id] = float('-inf')
+            continue
+        if not ("true".startswith(id_to_token[token_id]) or "false".startswith(id_to_token[token_id])):
             logits[token_id] = float('-inf')
 
     return logits
@@ -42,12 +56,27 @@ def find_valid_string_tokens(logits: list[float], vocab: dict[str, float]) -> li
     return logits
 
 
-def generate_number_value(model: Any, vocab: dict[str, float], ids_list: list[int]) -> tuple[str, list[int]]:
+def generate_number_value(model: Any, vocab: dict[str, float], ids_list: list[int]) -> tuple[float, list[int]]:
     last_token = ""
     value = ""
     while last_token not in [",", "}"]:
         logits = model.get_logits_from_input_ids(ids_list)
         logits = find_valid_number_tokens(logits, vocab)
+        max_id = logits.index(max(logits))
+        last_token = model.decode([max_id])
+        ids_list.append(max_id)
+        if last_token not in [",", "}"]:
+            value += last_token
+    value = float(value)
+    return value, ids_list
+
+
+def generate_boolean_value(model: Any, vocab: dict[str, float], ids_list: list[int]) -> tuple[str, list[int]]:
+    last_token = ""
+    value = ""
+    while value not in ["true", "false"]:
+        logits = model.get_logits_from_input_ids(ids_list)
+        logits = find_valid_boolean_tokens(logits, vocab)
         max_id = logits.index(max(logits))
         last_token = model.decode([max_id])
         ids_list.append(max_id)
