@@ -46,11 +46,13 @@ def main() -> None:
         vocab = json.load(f)
 
     outputs: list[OutputFile] = []
-    for test in tests:
+    for i, test in enumerate(tests):
+        print(f"Processing {i+1}/{len(tests)}: {test.prompt}")
         output = generate_function_call(model, vocab, functions, test)
         outputs.append(output)
 
     write_output_file(args.output, outputs)
+    print(f"Done! Results written to {args.output}")
 
 
 if __name__ == "__main__":

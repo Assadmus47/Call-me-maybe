@@ -1,6 +1,7 @@
 import json
 import os
 from src.models import Function, FunctionCallingTest, OutputFile
+from pydantic import ValidationError
 
 
 def parse_function_file(filename: str) -> list[Function]:
@@ -15,11 +16,19 @@ def parse_function_file(filename: str) -> list[Function]:
     try:
         with open(filename, "r") as f:
             data = json.load(f)
+        if not data:
+            raise SystemExit(f"ERROR: Empty file: {filename}")
+
         return [Function(**item) for item in data]
+
     except json.JSONDecodeError:
         raise SystemExit(f"ERROR: Invalid JSON in file: {filename}")
+
     except FileNotFoundError:
         raise SystemExit(f"ERROR: File not found: {filename}")
+
+    except ValidationError as e:
+        raise SystemExit(f"ERROR: Invalid function definition: {e}")
 
 
 def parse_calling_function_file(
@@ -36,11 +45,18 @@ def parse_calling_function_file(
     try:
         with open(filename, "r") as f:
             data = json.load(f)
+        if not data:
+            raise SystemExit(f"ERROR: Empty file: {filename}")
         return [FunctionCallingTest(**item) for item in data]
+
     except json.JSONDecodeError:
         raise SystemExit(f"ERROR: Invalid JSON in file: {filename}")
+
     except FileNotFoundError:
         raise SystemExit(f"ERROR: File not found: {filename}")
+
+    except ValidationError as e:
+        raise SystemExit(f"ERROR: Invalid function definition: {e}")
 
 
 def write_output_file(

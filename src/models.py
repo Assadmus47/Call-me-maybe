@@ -10,7 +10,7 @@ class FunctionParameter(BaseModel):
 
 class Function(BaseModel):
     """Represents a callable function with its schema."""
-
+    model_config = {"extra": "forbid"}
     name: str = Field(...)
     description: str = Field(...)
     parameters: dict[str, FunctionParameter] = Field(...)
@@ -19,7 +19,7 @@ class Function(BaseModel):
 
 class FunctionCallingTest(BaseModel):
     """Represents a natural language prompt to process."""
-
+    model_config = {"extra": "forbid"}
     prompt: str = Field(...)
 
 
