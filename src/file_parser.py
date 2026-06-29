@@ -30,6 +30,9 @@ def parse_function_file(filename: str) -> list[Function]:
     except ValidationError as e:
         raise SystemExit(f"ERROR: Invalid function definition: {e}")
 
+    except TypeError:
+        raise SystemExit(f"ERROR: Invalid JSON structure in file: {filename}")
+
 
 def parse_calling_function_file(
     filename: str,
@@ -57,6 +60,9 @@ def parse_calling_function_file(
 
     except ValidationError as e:
         raise SystemExit(f"ERROR: Invalid function definition: {e}")
+
+    except TypeError:
+        raise SystemExit(f"ERROR: Invalid JSON structure in file: {filename}")
 
 
 def write_output_file(
