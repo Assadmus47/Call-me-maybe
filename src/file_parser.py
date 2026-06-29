@@ -1,4 +1,5 @@
 import json
+import os
 from src.models import Function, FunctionCallingTest, OutputFile
 
 
@@ -53,6 +54,7 @@ def write_output_file(
         output_files: List of OutputFile objects to write.
     """
     try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         data = [item.model_dump() for item in output_files]
         with open(file_path, "w") as f:
             json.dump(data, f, indent=2)
