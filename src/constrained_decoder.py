@@ -187,16 +187,6 @@ def generate_string_value(
     vocab: dict[str, Any],
     ids_list: list[int],
 ) -> tuple[str, list[int]]:
-    """Generate a string value using constrained decoding.
-
-    Args:
-        model: The LLM model instance.
-        vocab: The vocabulary dictionary.
-        ids_list: Current list of token IDs.
-
-    Returns:
-        A tuple of (string value, updated ids_list).
-    """
     value = ""
     found_first_quote = False
     while True:
@@ -205,10 +195,16 @@ def generate_string_value(
         max_id = logits.index(max(logits))
         last_token = model.decode([max_id])
         ids_list.append(max_id)
+
         if '"' in last_token:
-            if found_first_quote:
+            if not found_first_quote:
+                after_quote = last_token.split('"', 1)[1]
+                value += after_quote
+                found_first_quote = True
+            else:
+                before_quote = last_token.split('"')[0]
+                value += before_quote
                 break
-            found_first_quote = True
         else:
             if found_first_quote:
                 value += last_token

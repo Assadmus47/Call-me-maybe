@@ -90,10 +90,17 @@ def generate_function_call(
 
         if param_info.type == "number":
             value, ids_list = generate_number_value(model, vocab, ids_list)
+
+        elif param_info.type == "integer":
+            value, ids_list = generate_number_value(model, vocab, ids_list)
+            value = int(value)
+
         elif param_info.type == "string":
             value, ids_list = generate_string_value(model, vocab, ids_list)
-        elif param_info.type == "bool":
+
+        elif param_info.type == "boolean":
             value, ids_list = generate_boolean_value(model, vocab, ids_list)
+
         else:
             raise SystemExit(
                 f"ERROR: Unknown parameter type: {param_info.type}"

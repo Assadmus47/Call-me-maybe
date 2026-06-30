@@ -5,3 +5,4 @@ __pycache__/
 data/output/
 .python-version
 to_do_list.md
+.moulinette/
