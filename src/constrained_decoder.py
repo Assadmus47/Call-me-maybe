@@ -1,5 +1,6 @@
 from typing import Any
 from src.models import Function
+MAX_TOKENS = 50
 
 
 def find_valide_token(
@@ -140,6 +141,7 @@ def generate_number_value(
     """
     last_token = ""
     value = ""
+    counter = 0
     while last_token not in [",", "}"]:
         logits = model.get_logits_from_input_ids(ids_list)
         logits = find_valid_number_tokens(logits, vocab)
@@ -148,6 +150,9 @@ def generate_number_value(
         ids_list.append(max_id)
         if last_token not in [",", "}"]:
             value += last_token
+        counter += 1
+        if counter == MAX_TOKENS:
+            raise SystemExit("ERROR: Could not generate number value (too many tokens)")
     try:
         result = float(value)
     except ValueError:
@@ -171,6 +176,7 @@ def generate_boolean_value(
         A tuple of (bool string value, updated ids_list).
     """
     value = ""
+    counter = 0
     while value not in ["true", "false"]:
         logits = model.get_logits_from_input_ids(ids_list)
         logits = find_valid_boolean_tokens(logits, vocab)
@@ -179,6 +185,9 @@ def generate_boolean_value(
         ids_list.append(max_id)
         if last_token not in [",", "}"]:
             value += last_token
+        counter += 1
+        if counter == MAX_TOKENS:
+            raise SystemExit("ERROR: Could not generate boolean value (too many tokens)")
     return value, ids_list
 
 
@@ -187,8 +196,19 @@ def generate_string_value(
     vocab: dict[str, Any],
     ids_list: list[int],
 ) -> tuple[str, list[int]]:
+    """Generate a string value using constrained decoding.
+
+    Args:
+        model: The LLM model instance.
+        vocab: The vocabulary dictionary.
+        ids_list: Current list of token IDs.
+
+    Returns:
+        A tuple of (string value, updated ids_list).
+    """
     value = ""
     found_first_quote = False
+    counter = 0
     while True:
         logits = model.get_logits_from_input_ids(ids_list)
         logits = find_valid_string_tokens(logits, vocab)
@@ -208,4 +228,7 @@ def generate_string_value(
         else:
             if found_first_quote:
                 value += last_token
+        counter += 1
+        if counter == MAX_TOKENS:
+            raise SystemExit("ERROR: Could not generate string value (too many tokens)")
     return value, ids_list
